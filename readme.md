@@ -1,6 +1,6 @@
-#Lern-Fair-File-Sharing Backend
+# Lern-Fair-File-Sharing Backend
 
-##How to run
+## How to run
 ```
 docker compose -up -d
 ```
