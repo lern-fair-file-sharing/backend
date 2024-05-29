@@ -11,25 +11,24 @@ services:
      volumes:
        - db:/var/lib/mysql
      environment:
-       - MYSQL_ROOT_PASSWORD=root
-       - MYSQL_PASSWORD=sqlusr
-       - MYSQL_DATABASE=nextcloud
-       - MYSQL_USER=nextcloud
+       - MYSQL_ROOT_PASSWORD=${DBROOTPW}
+       - MYSQL_PASSWORD=${DBPW}
+       - MYSQL_DATABASE=${DBNAME}
+       - MYSQL_USER=${DBUSR}
 
   app:
     image: nextcloud
     restart: always
     ports:
-      - 8080:80
+      - ${PORT}
     links:
       - db
     volumes:
       - nextcloud:/var/www/html
     environment:
-      - MYSQL_PASSWORD=sqlusr
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=${DBPW}
+      - MYSQL_DATABASE=${DBNAME}
+      - MYSQL_USER=${DBUSR}
       - MYSQL_HOST=db
-      - NEXTCLOUD_ADMIN_USER:testuser
-      - NEXTCLOUD_ADMIN_PASSWORD:1234
-      - NEXTCLOUD_TRUSTED_DOMAINS:localhost:8080 172.27.192.1:8080
+      - NEXTCLOUD_ADMIN_USER:${NCUSR}
+      - NEXTCLOUD_ADMIN_PASSWORD:${NCPW}
