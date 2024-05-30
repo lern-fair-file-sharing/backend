@@ -14,12 +14,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -57,12 +57,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -99,12 +99,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -146,12 +146,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -193,12 +193,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -240,12 +240,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -278,12 +278,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -363,12 +363,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -410,12 +410,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -424,8 +424,7 @@
 				"header": [
 					{
 						"key": "Destination",
-						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder/UploadReadme.md",
-						"type": "text"
+						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder/UploadReadme.md"
 					}
 				],
 				"url": {
@@ -454,12 +453,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "{{Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "testuser",
+							"value": "{{Username}}",
 							"type": "string"
 						}
 					]
@@ -468,8 +467,7 @@
 				"header": [
 					{
 						"key": "Destination",
-						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder2",
-						"type": "text"
+						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder2"
 					}
 				],
 				"url": {
@@ -489,6 +487,53 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "1234",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "testuser",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Username",
+			"value": "testuser"
+		},
+		{
+			"key": "Password",
+			"value": "1234"
 		}
 	]
 }
