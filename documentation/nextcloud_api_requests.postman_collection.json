@@ -160,7 +160,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n <d:propertyupdate xmlns:d=\"DAV:\" xmlns:oc=\"http://owncloud.org/ns\" xmlns:nc=\"http://nextcloud.org/ns\">\r\n   <d:prop>\r\n    <oc:tag>Wallpapers</oc:tag>\r\n   </d:prop>\r\n </d:propertyupdate>",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<d:propertyupdate xmlns:d=\"DAV:\" xmlns:oc=\"http://owncloud.org/ns\">\r\n  <d:set>\r\n        <d:prop>\r\n          <oc:favorite>1</oc:favorite>\r\n        </d:prop>\r\n  </d:set>\r\n</d:propertyupdate>",
 					"options": {
 						"raw": {
 							"language": "text"
@@ -203,11 +203,11 @@
 						}
 					]
 				},
-				"method": "PROPPATCH",
+				"method": "REPORT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n <d:propertyupdate xmlns:d=\"DAV:\" xmlns:oc=\"http://owncloud.org/ns\" xmlns:nc=\"http://nextcloud.org/ns\">\r\n   <d:prop>\r\n    <oc:tag>Wallpapers</oc:tag>\r\n   </d:prop>\r\n </d:propertyupdate>",
+					"raw": "<?xml version=\"1.0\"?>\r\n<oc:filter-files  xmlns:d=\"DAV:\" xmlns:oc=\"http://owncloud.org/ns\" xmlns:nc=\"http://nextcloud.org/ns\">\r\n         <oc:filter-rules>\r\n                 <oc:favorite>1</oc:favorite>\r\n         </oc:filter-rules>\r\n </oc:filter-files>",
 					"options": {
 						"raw": {
 							"language": "text"
@@ -215,7 +215,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/remote.php/dav/files/testuser/UploadedReadme.md",
+					"raw": "http://localhost:8080/remote.php/dav/files/testuser/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -226,7 +226,7 @@
 						"dav",
 						"files",
 						"testuser",
-						"UploadedReadme.md"
+						""
 					]
 				}
 			},
@@ -424,7 +424,7 @@
 				"header": [
 					{
 						"key": "Destination",
-						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder",
+						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder/UploadReadme.md",
 						"type": "text"
 					}
 				],
@@ -468,12 +468,12 @@
 				"header": [
 					{
 						"key": "Destination",
-						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder",
+						"value": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder2",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/remote.php/dav/files/testuser/UploadedReadme.md",
+					"raw": "http://localhost:8080/remote.php/dav/files/testuser/NewFolder",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -484,7 +484,7 @@
 						"dav",
 						"files",
 						"testuser",
-						"UploadedReadme.md"
+						"NewFolder"
 					]
 				}
 			},
