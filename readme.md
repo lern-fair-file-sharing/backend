@@ -34,7 +34,7 @@ docker compose up -d
 Webdav is a network protcol that allows us to handle the data of users. You can use Webdav API calls as is to retrieve an XML as a response 
 
 #### 🖥️ Webdav Clients
-Since webdav is an open standard you can use services like [webdav-fd](https://www.npmjs.com/package/webdav-fs) which will most certainly not support all possible functionality supplied by nextcloud but are easier to implement. Also check these links, if you want to implement this in the frontend: [StackOverflow](https://stackoverflow.com/questions/58258153/is-it-possible-to-make-a-webdav-client-in-react-native-without-the-need-of-nativ), [NextCloudBlog](https://nextcloud.com/de/blog/using-webdav-fs-to-access-files-in-nextcloud/)
+Since webdav is an open standard you can use services like [webdav-fd](https://www.npmjs.com/package/webdav-fs) which will most certainly not support all possible functionality supplied by nextcloud but are easier to implement. Also check these links, if you want to implement this in the frontend: [StackOverflow](https://stackoverflow.com/questions/58258153/is-it-possible-to-make-a-webdav-client-in-react-native-without-the-need-of-nativ),[NextCloudBlog](https://nextcloud.com/de/blog/using-webdav-fs-to-access-files-in-nextcloud/)
 
 #### 🛠️ API Functionality
 The Webdav functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/WebDAV/basic.html).
