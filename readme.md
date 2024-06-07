@@ -9,7 +9,7 @@ This repository holds the docker-compose file for our nextcloud backend as well 
 An example debugging configuration for the variables in your dockerfile. WARNING: Don't use this in a production environment
 
 ### 📡 API Calls
-All relevant API calls are collected in our postman json that you can find [here] (https://github.com/lern-fair-file-sharing/backend/tree/master/documentation)
+All relevant API calls are collected in our postman json that you can find [here](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation)
 To load it into postman, navigate to Under File -> Import -> then past .json content into "raw", additionally you have to set your username and password
 
 ### 💻 Commandline Instructions
@@ -46,5 +46,5 @@ For tested functions check out the [postmanfile](https://github.com/lern-fair-fi
 Has it's roots as a Rest API originally from Social Desktop. Here with Nextcloud: Advanced features that would usually require an admin console like adding a new user
 
 #### 🛠️ API Functionality
-The Webdav functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/OCS/ocs-api-overview.html).
+The OCS functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/OCS/ocs-api-overview.html).
 For tested functions check out the [postmanfile](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation).
