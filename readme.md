@@ -9,7 +9,7 @@ This repository holds the docker-compose file for our nextcloud backend as well 
 An example debugging configuration for the variables in your dockerfile. WARNING: Don't use this in a production environment
 
 ### 📡 API Calls
-All relevant API calls are collected in our postman json that you can find [here] (https://github.com/lern-fair-file-sharing/backend/tree/master/documentation)
+All relevant API calls are collected in our postman json that you can find [here](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation)
 To load it into postman, navigate to Under File -> Import -> then past .json content into "raw", additionally you have to set your username and password
 
 ### 💻 Commandline Instructions
@@ -34,7 +34,7 @@ docker compose up -d
 Webdav is a network protcol that allows us to handle the data of users. You can use Webdav API calls as is to retrieve an XML as a response 
 
 #### 🖥️ Webdav Clients
-Since webdav is an open standard you can use services like [webdav-fd](https://www.npmjs.com/package/webdav-fs) which will most certainly not support all possible functionality supplied by nextcloud but are easier to implement. Also check these links, if you want to implement this in the frontend: [StackOverflow](https://stackoverflow.com/questions/58258153/is-it-possible-to-make-a-webdav-client-in-react-native-without-the-need-of-nativ), [NextCloudBlog](https://nextcloud.com/de/blog/using-webdav-fs-to-access-files-in-nextcloud/)
+Since webdav is an open standard you can use services like [webdav-fd](https://www.npmjs.com/package/webdav-fs) which will most certainly not support all possible functionality supplied by nextcloud but are easier to implement. Also check these links, if you want to implement this in the frontend: [StackOverflow](https://stackoverflow.com/questions/58258153/is-it-possible-to-make-a-webdav-client-in-react-native-without-the-need-of-nativ),[NextCloudBlog](https://nextcloud.com/de/blog/using-webdav-fs-to-access-files-in-nextcloud/)
 
 #### 🛠️ API Functionality
 The Webdav functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/WebDAV/basic.html).
@@ -46,5 +46,5 @@ For tested functions check out the [postmanfile](https://github.com/lern-fair-fi
 Has it's roots as a Rest API originally from Social Desktop. Here with Nextcloud: Advanced features that would usually require an admin console like adding a new user
 
 #### 🛠️ API Functionality
-The Webdav functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/OCS/ocs-api-overview.html).
+The OCS functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/OCS/ocs-api-overview.html).
 For tested functions check out the [postmanfile](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation).
