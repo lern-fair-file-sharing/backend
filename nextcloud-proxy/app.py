@@ -87,5 +87,33 @@ def upload_files():
 
     return jsonify({"message": "Files uploaded successfully"}), 200
 
+
+def init_admin_user():
+    url = "http://localhost:8080/index.php"
+
+    payload = {
+        "install": "true",
+        "adminlogin": NEXTCLOUD_USERNAME,
+        "adminpass": NEXTCLOUD_PASSWORD,
+        "directory": "/var/www/html",
+    }
+
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    response = requests.post(url, data=payload, headers=headers)
+
+    if response.status_code == 200:
+        print("Nextcloud setup completed successfully!")
+    else:
+        print(f"Error: {response.status_code}")
+        print(response.text)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    try:
+        init_admin_user()
+    except Exception as e:
+        print(str(e))
+    finally:
+        app.run(debug=True)
