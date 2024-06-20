@@ -13,6 +13,12 @@ services:
       - postgres_password
       - postgres_user
 
+  redis:
+    image: redis:alpine
+    restart: always
+    expose:
+      - "6379"
+
   app:
     image: nextcloud
     restart: always
@@ -21,6 +27,7 @@ services:
     volumes:
       - nextcloud:/var/www/html
     environment:
+      - REDIS_HOST=redis
       - POSTGRES_HOST=db
       - POSTGRES_DB_FILE=/run/secrets/postgres_db
       - POSTGRES_USER_FILE=/run/secrets/postgres_user
@@ -30,6 +37,7 @@ services:
       - NEXTCLOUD_TRUSTED_DOMAINS=localhost 192.168.* 172.16* 10* nextcloud.local
     depends_on:
       - db
+      - redis
     secrets:
       - nextcloud_admin_password
       - nextcloud_admin_user
