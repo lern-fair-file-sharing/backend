@@ -1,50 +1,61 @@
 # 📂 Lern-Fair-File-Sharing Backend
 
 ## 📝 Description
-This repository holds the docker-compose file for our nextcloud backend as well as a documentation for the nextcloud features, we need to access.
+This repository holds all files necessary to start our NextCloud instance using Docker and as well as a documentation for the NextCloud API features, we need to use.
 
 ## 📦 Content
 
 ### 📄 .env file
-An example debugging configuration for the variables in your dockerfile. WARNING: Don't use this in a production environment
+Create a .env file with the following variables:
+```
+NCUSR=<nextcloud-user>
+NCPW=<nextcloud-password>
+```
+An examplary .env file is included, but pleae don't use this in a production environment.
 
-### 📡 API Calls
-All relevant API calls are collected in our postman json that you can find [here](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation)
-To load it into postman, navigate to Under File -> Import -> then past .json content into "raw", additionally you have to set your username and password
-
-### 💻 Commandline Instructions
-Coming soon...
+### NextCloud secrets:
+Inside the ``./secrets/`` folder create the following files:
+- ``nextcloud_admin_password.txt``: In here put the admin password
+- ``nextcloud_admin_user.txt``: In here put the admin user name
+- ``postgres_db.txt``: In here put the database name "postgresdb"
+- ``postgres_password.txt``: In here put the postgres user password
+- ``postgres_user.txt``: In here simply the postgres user name
+Examplary secrets are included, but pleae don't use them in a production environment.
 
 ## 🚀 How to setup the docker nextcloud container
-- Execute these commands on your commandline
-```bash
-git clone git@github.com:lern-fair-file-sharing/backend.git #or the http version if you're not a maintainer
-cd backend
-docker compose up -d
-```
-*for now we have to manually add a new admin account, this should be fixed in the future*
-- after this, open [http://localhost:8080](http://localhost:8080) and register the admin account with a username and password
-- now your nextcloud instance is good to go, as long as you don't delete the container in you docker environment, you don't have to do these steps everytime you want to use this. Just start docker and the backend will start automatically.
+1. Execute these commands on your command line:
+   ```bash
+   git clone git@github.com:lern-fair-file-sharing/backend.git
+   cd backend
+   docker compose up -d
+   ```
+   
+   After this the NextCloud instance will be starting and the admin user automatically created.
+   You can visit NextCloud at [http://localhost:8080](http://localhost:8080) (or whatever port you specified) and register as the admin.
+   
+2. Our application requires a specific folder structure which contains dummy files (see [./example-folder-structure/](/example-folder-structure/)). To create it execute the script [initialization.py](./initialization.py). Make sure you have the [requests](https://pypi.org/project/requests/) package installed.
 
-## ⚙️ Nextcloud functionality access
+As long as you don't delete the container and volumes, you don't have to do these steps everytime you want to use this. Just start docker and the backend will start automatically. But if you need to reset the NextCloud instance use the following command:
+```bash
+docker compose down -v
+```
+
+## ⚙️ Nextcloud API Access
 
 ### 🌐 Webdav
 
 #### 📝 Description
-Webdav is a network protcol that allows us to handle the data of users. You can use Webdav API calls as is to retrieve an XML as a response 
-
-#### 🖥️ Webdav Clients
-Since webdav is an open standard you can use services like [webdav-fd](https://www.npmjs.com/package/webdav-fs) which will most certainly not support all possible functionality supplied by nextcloud but are easier to implement. Also check these links, if you want to implement this in the frontend: [StackOverflow](https://stackoverflow.com/questions/58258153/is-it-possible-to-make-a-webdav-client-in-react-native-without-the-need-of-nativ),[NextCloudBlog](https://nextcloud.com/de/blog/using-webdav-fs-to-access-files-in-nextcloud/)
+Webdav is a network protcol that allows us to handle the data of users. You can use Webdav API calls as is to retrieve an XML as a response.
+Since webdav is an open standard you can use services like [webdav-fd](https://www.npmjs.com/package/webdav-fs) which will most certainly not support all possible functionality supplied by nextcloud but are easier to implement. Also check these links, if you want to implement this in the frontend: [StackOverflow](https://stackoverflow.com/questions/58258153/is-it-possible-to-make-a-webdav-client-in-react-native-without-the-need-of-nativ), [NextCloud Blog](https://nextcloud.com/de/blog/using-webdav-fs-to-access-files-in-nextcloud/), [Webdav Docs](https://docs.nextcloud.com/server/19/developer_manual/client_apis/WebDAV/basic.html)
 
 #### 🛠️ API Functionality
-The Webdav functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/WebDAV/basic.html).
-For tested functions check out the [postmanfile](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation).
+Here you can find a collection of API endpoint descriptions ready to test using Postman: [Postman JSON File](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation).
+In Postman navigate to File -> Import -> then paste .json content into "raw", additionally you have to set your username and password in the headers as basic HTTP Authentication.
 
 ### 🌐 OCS (Open Collaborative Services)
-
 #### 📝 Description
-Has it's roots as a Rest API originally from Social Desktop. Here with Nextcloud: Advanced features that would usually require an admin console like adding a new user
+OCS provides advanced features for NextCloud using the corresponding CLI tool. This can be used by admins to, for example, create new suers and manage other administrative parts of their NextCloud instance.
 
-#### 🛠️ API Functionality
+#### 🧑‍💻 CLI Functionality
 The OCS functionality is documented [here](https://docs.nextcloud.com/server/19/developer_manual/client_apis/OCS/ocs-api-overview.html).
-For tested functions check out the [postmanfile](https://github.com/lern-fair-file-sharing/backend/tree/master/documentation).
+You can use the Dcker [exec](https://docs.docker.com/reference/cli/docker/container/exec/) command to opt-into you container running the NextCloud instance and execute OCS commands from there.
