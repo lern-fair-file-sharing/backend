@@ -187,6 +187,8 @@ for tag in json_data['Existing Tags']:
     create_system_tag(tag)
 for tag in json_data['Existing Users']:
     create_system_tag(tag)
+for tag in json_data['File Types']:
+    create_system_tag(tag)
 print(get_all_system_tags())
 
 # Path to the local directory structure to replicate
