@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import xml.etree.ElementTree as ET
 import json
 
-f = open("tag-init.json", "r")
+f = open("./example-tags/tag-init.json", "r")
 json_data = json.load(f)
 
 # Load the credentials from the .env file
@@ -98,18 +98,14 @@ def upload_file(directory_path, file_name, file_path):
                             if systemTag['tagName'] == tag:
                                 if not assign_system_tag(fileID, systemTag):
                                     print("Failed to assign tag.")
-                                    return False
                 for tag in json_data['Existing Users']:
                     if tag.lower() in file_name:
                         for systemTag in systemTags:
                             if systemTag['tagName'] == tag:
                                 if not assign_system_tag(fileID, systemTag):
                                     print("Failed to assign tag.")
-                                    return False
             else:
                 print("Error finding file")
-                return False
-            return True
         else:
             print(f"Error uploading file: {directory_path}/{file_name}")
 
@@ -145,7 +141,6 @@ def get_all_system_tags():
         return tags
     else:
         print("Failed to get tags:", response.status_code, response.text)
-        return None
 
 # Function to create a system tag
 def create_system_tag(tag_name):
@@ -162,10 +157,8 @@ def create_system_tag(tag_name):
 
     if response.status_code in [201, 204]:
         print(f"Tag created: {tag_name}")
-        return True
     else:
         print("Failed to create tag:", response.status_code, response.text)
-        return False
 
 # Function to assign a system tag
 def assign_system_tag(file_id, tag):
@@ -183,10 +176,8 @@ def assign_system_tag(file_id, tag):
 
     if response.status_code in [201, 204]:
         print(f"Tag {tag['tagName']} assigned to file ID {file_id}")
-        return True
     else:
         print("Failed to assign tag:", response.status_code, response.text)
-        return False
 
 
 delete_all_files()
@@ -212,3 +203,6 @@ for root, dirs, files in os.walk(local_base_path):
     for file in files:
         file_path = os.path.join(root, file)
         upload_file(nextcloud_path, file, file_path)
+
+
+f.close()
