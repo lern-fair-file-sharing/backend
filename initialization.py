@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import xml.etree.ElementTree as ET
 import json
 
-f = open("tag-init.json", "r")
+f = open("inital-setup/tag-init.json", "r")
 json_data = json.load(f)
 
 # Load the credentials from the .env file
@@ -90,26 +90,46 @@ def upload_file(directory_path, file_name, file_path):
             fileID = get_folder_content("/"+directory_path+"/"+file_name)
             if fileID:
                 
+                file_name = file_name.lower()
                 systemTags = get_all_system_tags()
-                for tag in json_data['Existing Tags']:
+                for tag in json_data['Subjects']:
                     # if the tag is in the directory path string, assign the tag
                     if tag in directory_path:
                         for systemTag in systemTags:
                             if systemTag['tagName'] == tag:
                                 if not assign_system_tag(fileID, systemTag):
                                     print("Failed to assign tag.")
-                                    return False
-                for tag in json_data['Existing Users']:
+                for tag in json_data['Users']:
                     if tag.lower() in file_name:
                         for systemTag in systemTags:
                             if systemTag['tagName'] == tag:
                                 if not assign_system_tag(fileID, systemTag):
                                     print("Failed to assign tag.")
-                                    return False
+                if ".pdf" in file_name or ".md" in file_name or ".docx" in file_name or ".txt" in file_name or ".odf" in file_name:
+                    for systemTag in systemTags:
+                        if systemTag['tagName'] == "Dokument":
+                            if not assign_system_tag(fileID, systemTag):
+                                print("Failed to assign tag.")
+                # check if the file is a jpg, png, or gif file
+                elif ".jpg" in file_name or ".jpeg" in file_name or".png" in file_name or ".gif" in file_name:
+                    for systemTag in systemTags:
+                        if systemTag['tagName'] == "Bild":
+                            if not assign_system_tag(fileID, systemTag):
+                                print("Failed to assign tag.")
+                # check if the file is a mp4, mov, or avi file
+                elif ".mp4" in file_name or ".mov" in file_name or ".avi" in file_name:
+                    for systemTag in systemTags:
+                        if systemTag['tagName'] == "Video":
+                            if not assign_system_tag(fileID, systemTag):
+                                print("Failed to assign tag.")
+                # check if the file is a mp3, wav, or flac file
+                elif ".mp3" in file_name or ".wav" in file_name or ".flac" in file_name:
+                    for systemTag in systemTags:
+                        if systemTag['tagName'] == "Audio":
+                            if not assign_system_tag(fileID, systemTag):
+                                print("Failed to assign tag.")
             else:
                 print("Error finding file")
-                return False
-            return True
         else:
             print(f"Error uploading file: {directory_path}/{file_name}")
 
@@ -145,7 +165,6 @@ def get_all_system_tags():
         return tags
     else:
         print("Failed to get tags:", response.status_code, response.text)
-        return None
 
 # Function to create a system tag
 def create_system_tag(tag_name):
@@ -162,10 +181,8 @@ def create_system_tag(tag_name):
 
     if response.status_code in [201, 204]:
         print(f"Tag created: {tag_name}")
-        return True
     else:
         print("Failed to create tag:", response.status_code, response.text)
-        return False
 
 # Function to assign a system tag
 def assign_system_tag(file_id, tag):
@@ -190,14 +207,16 @@ def assign_system_tag(file_id, tag):
 
 
 delete_all_files()
-for tag in json_data['Existing Tags']:
+for tag in json_data['Subjects']:
     create_system_tag(tag)
-for tag in json_data['Existing Users']:
+for tag in json_data['Users']:
+    create_system_tag(tag)
+for tag in json_data['File Types']:
     create_system_tag(tag)
 print(get_all_system_tags())
 
 # Path to the local directory structure to replicate
-local_base_path = "./example-folder-structure"
+local_base_path = "./inital-setup/example-folder-structure"
 
 # Traverse the local directory structure
 for root, dirs, files in os.walk(local_base_path):
@@ -212,3 +231,6 @@ for root, dirs, files in os.walk(local_base_path):
     for file in files:
         file_path = os.path.join(root, file)
         upload_file(nextcloud_path, file, file_path)
+
+
+f.close()
