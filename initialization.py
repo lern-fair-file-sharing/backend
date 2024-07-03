@@ -176,8 +176,10 @@ def assign_system_tag(file_id, tag):
 
     if response.status_code in [201, 204]:
         print(f"Tag {tag['tagName']} assigned to file ID {file_id}")
+        return True
     else:
         print("Failed to assign tag:", response.status_code, response.text)
+        return False
 
 
 delete_all_files()
