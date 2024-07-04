@@ -26,7 +26,7 @@ Exemplary secrets are included, but please don't use them in a production enviro
 
 ## 🚀 How to set up the docker Nextcloud container
 
-## ⚠️ Warning: This container does not run on Windows. Windows Users should [install WSL2](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
+⚠️ Warning: This container does not run on Windows. Windows Users should [install WSL2](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
 
 1. Execute these commands on your command line:
    ```bash
