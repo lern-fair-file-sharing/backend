@@ -29,11 +29,12 @@ Exemplary secrets are included, but please don't use them in a production enviro
 ⚠️ Warning: This container does not run on Windows. Windows Users should [install WSL2](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
 
 1. Execute these commands on your command line:
-   ```bash
-   git clone git@github.com:lern-fair-file-sharing/backend.git
-   cd backend
-   docker compose up -d
-   ```
+
+```bash
+git clone git@github.com:lern-fair-file-sharing/backend.git
+cd backend
+docker compose up -d
+```
    
 After this, the Nextcloud instance will start, and the admin user will automatically be created.
 You can visit Nextcloud at [http://localhost:8080](http://localhost:8080) (or whatever port you specified) and register as the admin.
