@@ -5,13 +5,15 @@ This repository holds all files necessary to start our NextCloud instance using 
 
 ## 📦 Content
 
+⚠️ Exemplary files are included. You don't need to create them for testing. Please don't use them in a production environment!
+
 ### 📄 .env file
+
 Create a .env file with the following variables:
 ```
 NCUSR=<nextcloud-user>
 NCPW=<nextcloud-password>
 ```
-An exemplary .env file is included, but please don't use this in a production environment.
 
 ### NextCloud secrets:
 Inside the ``./secrets/`` folder, create the following files:
@@ -20,7 +22,6 @@ Inside the ``./secrets/`` folder, create the following files:
 - ``postgres_db.txt``: In here, put the database name "postgresdb"
 - ``postgres_password.txt``: In here, put the postgres user password
 - ``postgres_user.txt``: In here, simply put the postgres username
-Exemplary secrets are included, but please don't use them in a production environment.
 
 
 
@@ -30,16 +31,20 @@ Exemplary secrets are included, but please don't use them in a production enviro
 
 1. Execute these commands on your command line:
 
-```bash
-git clone git@github.com:lern-fair-file-sharing/backend.git
-cd backend
-docker compose up -d
-```
+   ```bash
+   git clone git@github.com:lern-fair-file-sharing/backend.git
+   cd backend
+   docker compose up -d
+   ```
    
-After this, the Nextcloud instance will start, and the admin user will automatically be created.
-You can visit Nextcloud at [http://localhost:8080](http://localhost:8080) (or whatever port you specified) and register as the admin.
+   After this, the Nextcloud instance will start, and the admin user will automatically be created.
+   You can visit Nextcloud at [http://localhost:8080](http://localhost:8080) (or whatever port you specified) and register as the admin.
    
 2. Our application requires a specific folder structure that contains dummy files (see [./example-folder-structure/](/example-folder-structure/)). To create it, execute the script [initialization.py](./initialization.py). Make sure you have the [request](https://pypi.org/project/requests/) package installed.
+
+   ```bash
+   python ./initialization.py    
+   ```
 
 As long as you don't delete the container and volumes, you don't have to do these steps every time you want to use it. Just start Docker, and the backend will start automatically. But if you need to reset the Nextcloud instance, use the following command:
 ```bash
